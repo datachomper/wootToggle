@@ -1,7 +1,11 @@
 #!/usr/bin/python
 
+# This script toggles the DTE pin of a serial port
+# this pin currently drives a relay to turn on/off
+# these rotating lights in Mickey's office during
+# a woot-off on woot.com
+
 import serial
-from time import sleep
 
 port = serial.Serial('/dev/ttyUSB0')
 port.setDTR(True)
