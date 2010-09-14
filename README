@@ -1,0 +1,8 @@
+About:
+  This script scrapes woot.com for a wootoff. Then it toggles the DTE pin on a serial port on or off.
+We use this to controll some little spinning woot-off style lamps off of a usb/serial bridge
+
+Installation:
+ * Install python
+ * Install pyserial
+ * Run script
