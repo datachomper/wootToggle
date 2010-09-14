@@ -6,16 +6,25 @@
 # a woot-off on woot.com
 
 import serial
+import urllib
+import re
+import time
+import platform
 
-port = serial.Serial('/dev/ttyUSB0')
-port.setDTR(True)
+if platform.system() == 'Linux':
+	port = serial.Serial('/dev/ttyUSB0')
+else:
+	port = serial.Serial('COM3')
+
+port.setDTR(False)
 
 while True:
-	choice = raw_input('on | off | daemon | quit: ')
-	if choice == 'on':
-		port.setDTR(False)
-	elif choice == 'off':
+	woot = urllib.urlopen('http://woot.com').read()
+	match = re.search('lights.gif', woot)
+	if match:
+		print "wootoff detected"
 		port.setDTR(True)
-	elif choice == 'quit':
-		port.close()
-		quit()
+	else:
+		print "no wootoff detected"
+		port.setDTR(False)
+	time.sleep(60*5) # Sleep for 5 minutes
