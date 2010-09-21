@@ -20,7 +20,7 @@ port.setDTR(False)
 
 while True:
 	woot = urllib.urlopen('http://woot.com').read()
-	match = re.search('lights.gif', woot)
+	match = re.search('gold-light.gif', woot)
 	if match:
 		print "wootoff detected"
 		port.setDTR(True)
